@@ -1,0 +1,164 @@
+<?php
+/**
+ * This class is the core of the MVC framework. It processes the url handing off responsibility to the correct
+ * controller, plus the relevant method inside the controller and any associated method params. Also handles
+ * low level error codes and exceptions
+ *
+ * Date: 1st February 2018
+ * @author: Anna Thomas - s4927945
+ * Assignment 2 - Wiki
+ */
+
+// Get the autoloader for Exception classes
+require APP_DIR . DS . 'Core' . DS . 'Autoloader.php';
+
+
+class Application
+{
+    private $url;
+
+    /** ------------------------------------------------------------------------------------------------------
+     * Start the session and do basic url splitting and sanitation since some parts of the urls will be passed
+     * as variables to the function in the controller
+     */
+    public function __construct()
+    {
+        session_start();
+
+        $this->url = '';
+
+        if (isset($_SERVER['REQUEST_URI'])) {
+            // Trim the leading and trailing forward slashes from the url
+            $this->url = rtrim(ltrim($_SERVER['REQUEST_URI'], '/'), '/');
+
+            // Strip PHP and HTML tags from the url, allowing forward slash deliminator
+            $this->url = strip_tags($this->url);
+
+            // And explode (at each forward slash) what remains into an array ready to be processed as
+            // controller / method / method variables
+            $this->url = explode('/', $this->url);
+        }
+        else
+        {
+          die('Please contact your system administrator citing the follow message: REQUEST_URI not set');
+        }
+
+        $this->handleUrl();
+
+    }
+
+
+
+    /** ------------------------------------------------------------------------------------------------------
+     * Handle what happens with the URL for handing off to the controller
+     */
+    private function handleUrl()
+    {
+        // If $url is still empty we should be at the home page
+        if ($this->url[0] == '')
+        {
+            // So use the Post controller as we don't want a Header('Location: x') redirect on the home page
+            // because that's just bad practice and bad for SEO too.
+            require_once APP_DIR . 'Models' . DS . 'PostModel.php';
+            $postModel = New PostModel();
+
+            require_once APP_DIR . 'Controllers' . DS . 'PostController.php';
+            $postController = New PostController($postModel);
+
+            $postController->index(array('all'));
+        }
+        else
+        {
+            // Get the controller name from the first element of the url array
+            $controller = $this->url[0] ? $this->url[0] : '';
+            $controller = ucfirst($controller);
+
+            // And the second part is the method inside the controller, which defaults to index using a
+            // unary operator
+            $method = isset($this->url[1]) ? $this->url[1] : 'index';
+
+            // Anything else following the method are variables the method handles
+            $params = array_slice($this->url, 2);
+
+            // Set the location of the controller, i.e: 'Application/Controllers/PostController.php'
+            $controllerPath = APP_DIR . 'Controllers' . DS . $controller . 'Controller.php';
+
+            if (file_exists($controllerPath))
+            {
+                try {
+                    require_once APP_DIR . 'Models' . DS . $controller . 'Model.php';
+                    $modelName = $controller . 'Model';
+
+                    require_once APP_DIR . 'Controllers' . DS . $controller . 'Controller.php';
+                    $controllerName = $controller . 'Controller';
+
+                    $controllerObject = new $controllerName(new $modelName);
+
+                    if (method_exists($controllerObject, $method))
+                    {
+                        // Controllers have permission criteria so test we have access
+                        if ($controllerObject->getPermission($method))
+                        {
+                            $controllerObject->$method($params);
+                        }
+                        else
+                        {
+                            throw new Custom403Exception();
+                        }
+                    }
+                    else
+                    {
+                        throw new Custom404Exception();
+                    }
+                }
+                // PDO is set to throw exceptions so we'll handle them here as well.
+                catch (\Exception $e)
+                {
+                    $this->error($e);
+                }
+            }
+            else
+            {
+                $this->error(new Custom404Exception());
+            }
+        }
+    }
+
+
+
+    /** ------------------------------------------------------------------------------------------------------
+     * Renders an error page based on a generic or custom exception
+     *
+     * @param $originalError    The error caught or generated by a method
+     */
+    public function error($originalError)
+    {
+        $body['errorObject'] = $originalError;
+
+        if(property_exists($originalError, 'custom'))
+        {
+            $error = $originalError;
+        }
+        else
+        {
+            $error = new Custom503Exception();
+        }
+
+        $errorStatus = $error->getStatus();
+        $body['errorStatus'] = $errorStatus;
+        $body['errorMessage'] = $error->getMessage();
+
+        header('HTTP/1.1 ' . $errorStatus);
+
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') // AJAX
+        {
+            require VIEW_DIR . 'Templates' . DS . 'jsonerror.php';
+        }
+        else
+        {
+            require VIEW_DIR . 'Templates' . DS . 'header.php';
+            require VIEW_DIR . 'Templates' . DS . 'error.php';
+            require VIEW_DIR . 'Templates' . DS . 'footer.php';
+        }
+    }
+}

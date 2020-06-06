@@ -1,0 +1,668 @@
+/* ========== GENERAL ========== */
+* {
+	margin: 0;
+	padding:0;
+	box-sizing: border-box;
+}
+
+body {
+	background:#FDFFFD;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.cb:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.container {
+	max-width: 1170px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.tar {
+	text-align: right;
+}
+
+.fr {
+	float: right;
+}
+
+.uc {
+	text-transform: uppercase;
+}
+
+ol {
+	margin: 0 0 20px 20px;
+}
+
+
+/* ========== HEADER ========== */
+header .container {
+	padding: 20px 10px 0;
+}
+
+.container.search {
+	padding: 20px 10px;
+}
+
+
+header #logo {
+	margin: 0 auto;
+	background: transparent url(../images/logo.png) no-repeat left center;
+	background-size: contain;
+	max-width:140px;
+	width: 100%;
+	height: 75px;
+}
+
+header #logo:hover {
+	opacity: 0.9;
+}
+
+header a {
+	color: transparent;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+header p.welcome {
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	line-height: 40px;
+}
+
+
+/* ========== NAVIGATION ========== */
+nav {
+	margin-top: 10px;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	list-style: none;
+}
+
+nav ul li {
+	display: inline-block;
+	max-height: 30px;
+	background-color: #9E35AC;
+	transition: .2s ease-in-out;
+}
+
+nav ul li:hover, nav ul li.active {
+	background-color: #512DA8;
+	transition: .2s ease-in-out;
+}
+
+nav ul li a {
+	padding: 8px 10px;
+	display: block;
+	text-align: center;
+	line-height: 14px;
+	font-size: 14px;
+	text-decoration: none;
+    color: #FFF
+}
+
+nav ul li ul {
+	display: none;
+	position: absolute;
+}
+
+nav ul li:hover ul {
+	display: block;
+
+}
+
+nav ul li ul li {
+	max-width: 200px;
+	background-c1olor: #F5941C;
+	margin: 0;
+	display: inherit;
+}
+
+nav ul li ul li a {
+	font-size: 13px;
+	text-align: left;
+}
+
+
+
+/* ========== MAIN ========== */
+main {
+	margin: 40px 0;
+	min-height: 500px;
+}
+
+main h1 {
+	font-weight: 400;
+	font-size: 20px;
+	margin: 0 0 30px;
+}
+
+main h2 {
+	margin: 0 0 30px;
+}
+
+
+main p {
+	margin: 0 0 20px;
+}
+
+main .content-child {
+	margin: 20px 0 30px;
+    padding: 20px;
+	width: 100%;
+	background: #FCFCFC;
+	border: 1px solid #F4F4F4;
+}
+
+main section.content-child a,
+main section.content-child a:visited,
+main section.content-child a:hover,
+main section.content-child a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+main section.content-child:hover {
+    background: #F;
+    transition: .2s ease-in-out;
+}
+
+
+main section.content-child a:hover > div{
+    opacity: 0.7;
+    transition: .2s ease-in-out;
+}
+
+main section.content-child img {
+	float: left;
+	max-width: 30%;
+	border: 1px solid #CCC;
+}
+
+main section.content-child h2 {
+    font-weight: normal;
+    text-transform: capitalize;
+}
+
+
+main section.content-child .info {
+	width: 70%;
+	float: left;
+	padding: 0 0 0 20px;
+}
+
+main section.content-child footer {
+	position: relative;
+    padding: 20px 0 0;
+    color: #444;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+    line-height: 18px;
+    border-radius: 1px 1px 0 0;
+}
+
+main section.content-child footer span.rating {
+	position: absolute;
+	left: 0;
+	bottom: 4px;
+	padding: 0!important;
+}
+
+main section.post img {
+	float: left;
+	max-width: 30%;
+	border: 1px solid #EEE;
+}
+
+main section.post h2 {
+	font-weight: normal;
+	text-transform: capitalize;
+}
+
+main section.post .info {
+	width: 70%;
+	float: left;
+	padding: 0 0 0 20px;
+}
+
+main section.post .author {
+	margin-bottom: 10px;
+	font-size: 15px;
+}
+
+main section.post #postrating {
+	height: 30px;
+	line-height: 34px;
+	margin-bottom: 10px;
+	text-align: right;
+}
+
+main section.post .jq-ry-container {
+	float: right;
+	padding: 0 0 0 5px;
+}
+
+main section.post .userrating {
+	text-align: right;
+}
+
+main section.post .userrating p {
+	margin-bottom: 10px;
+}
+
+main .message {
+	text-align: center;
+}
+
+main #button-container {
+	margin: 20px 0 10px;
+}
+
+main .button-container-right {
+	margin: 20px 0;
+	text-align: right;
+}
+
+main .button-container-right a.button{
+	margin: 0;
+}
+
+main a.button {
+	text-decoration: none;
+}
+
+main p.description {
+	margin: 20px 0 0;
+	font-size: 14px;
+}
+
+main p.total {
+	margin: 20px;
+	text-align: right;
+}
+
+main ul.customerdetails {
+	float: left;
+	padding: 10px;
+	border: 1px solid #E5E5E5;
+    background: #F5F5F5;
+    border-radius: 2px;
+    margin: 0 0 20px;
+}
+
+main ul.customerdetails li {
+	margin: 0;
+	list-style: none;
+	font-size: 14px;
+}
+
+main #pagination {
+	text-align: center;
+}
+
+main #pagination li, main #pagination a {
+	display: inline-block;
+	margin: 0 0 0 4px;
+	padding: 4px 6px;
+	background: #00897B;
+	border: none;
+	color: #eee!important;
+	text-decoration: none;
+}
+
+main #pagination li:hover, main #pagination li.selected, main #pagination a:hover, main #pagination a.selected {
+	background: #9E35AC;
+	transition: .2s ease-in-out;
+	cursor: pointer;
+}
+
+/* ========== FORMS ========== */
+
+main .arrange {
+	font-size: 13px;
+	margin: 0 0 20px;
+}
+
+main .arrange select {
+	margin: 0 10px 0 0;
+}
+
+main form#inlined {
+	max-width: 420px;
+	margin: 0 auto;
+}
+
+main form {
+	font-size: 14px;
+}
+
+main form#addtobasketform {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+main form fieldset {
+	padding: 15px;
+	border: 2px solid #DDD;
+}
+
+main form select {
+	width: 150px;
+	margin: 0 0 20px;
+}
+
+main #error {
+	display: block;
+	color: #E00;
+	line-height: 14px;
+	min-height: 14px;
+	font-size: 13px;
+}
+
+form input, form textarea {
+	padding: 4px 6px;
+	margin: 0 0 20px;
+	border: 1px solid #ddd;
+	outline: none;
+	width: 190px;
+	-webkit-appearance: none;
+	min-height: 21px;
+}
+
+main form  label {
+	font-size: 14px;
+}
+
+
+main form label span{
+	font-size: 9px;
+}
+
+
+main form#addtobasketform input {
+	width: 45px;
+	margin: 0 0 10px;
+}
+
+main section form#addtobasketform input[type="submit"] {
+	margin: 6px 0 0;
+	font-size: 13px;
+	padding: 6px 8px;
+}
+
+
+header form.searchform input[type="submit"] {
+	margin: 0 0 0 6px;
+	font-size: 13px;
+	padding: 0 8px;
+	height: 23px;
+	line-height: 23px;
+}
+
+
+main form#genericform input:focus, main form#genericform textarea:focus {
+	border-color: #00897B;
+}
+
+main form#genericform textarea {
+	width: 100%;
+	float: left;
+	min-height: 100px;
+	resize: vertical;
+}
+
+main form label {
+	display: block;
+	margin: 0 0 3px;
+}
+
+main form#inlined label {
+	display: inline-block;
+	width: 170px;
+	margin: 0 5px 0 0;
+	text-align: right;
+	font-size: 12px;
+}
+
+main form .post-update-preview {
+	margin: 0 0 8px;
+	max-width: 350px;
+	display: block;
+}
+
+main form input[type="file"] {
+	border: 0;
+	padding: 0;
+}
+
+main form#inlined #button-container {
+	width: 100%;
+	margin: 20px 0 15px;
+	text-align: center;
+}
+
+form input[type="submit"], form input[type="button"], a.button {
+	width: auto!important;
+	background: #00897B;
+	border: none;
+	color: #FEFEFE!important;
+	padding: 0 10px;
+	border-radius: 5px;
+	font-size: 15px;
+	margin: 0 20px 0 20px;
+	height: 34px;
+	line-height: 34px;
+	display: inline-block;
+}
+
+form input[type="submit"]:hover, form input[type="button"]:hover, a.button:hover {
+	background: #673AB7;
+	transition: .2s ease-in-out;
+	cursor: pointer;
+}
+
+
+
+
+/* ========== TABLES ========== */
+#list-table {
+	margin: 0 0 25px;
+	font-size: 13px;
+	text-align: center;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	border: none;
+}
+
+
+#list-table th, #list-table td {
+	padding: 10px 0 10px 1%;
+	overflow: hidden;
+	word-break: normal;
+	color: #FFF;
+	border: none;
+	text-align: left;
+}
+
+#list-table th {
+	font-weight: normal;
+	background-color: rgba(117, 76, 189, 0.9);
+}
+
+#list-table th:first-child {
+	border-radius: 5px 0 0;
+}
+
+#list-table th:last-child {
+	border-radius: 0 5px 0 0;
+}
+
+
+#list-table td, #list-table a, #list-table a:visited {
+	color: #444!important;
+}
+
+#list-table tr:nth-child(even) td {
+	background-color: #fff;
+}
+
+#list-table tr:nth-child(odd) td {
+	background-color: rgba(117, 76, 189, 0.1);
+}
+
+#list-table th.medium, #list-table td.medium {
+	width: 200px;
+}
+
+#list-table th.small, #list-table td.small {
+	width: 55px;
+}
+
+#list-table .number {
+	padding: 10px 1% 10px 0;
+	text-align: right;
+}
+
+#list-table .icon-cell {
+	padding: 10px 0;
+	text-align: center;
+}
+
+#list-table .icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	stroke-width: 0;
+	stroke: #444;
+	fill: #444;
+}
+
+
+/* ========== FOOTER ========== */
+body > footer {
+	background: #189F93;
+	margin: 100px 0 0;
+}
+
+
+body > footer .container {
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	color: #FAFAFA;
+	font-size: 14px;
+}
+
+
+
+/* ========== RESPONSIVENESS ========== */
+@media only screen and (max-width:600px) {
+
+	.container {
+		padding: 0 10px;
+	}
+
+	main .content-child {
+		padding: 10px;
+	}
+
+	main section.content-child img {
+		display: none;
+	}
+
+	main section.post img {
+		max-width: 100%;
+		margin-bottom: 20px;
+	}
+
+	main section.content-child .info, main section.post .info {
+		padding: 0;
+		width: 100%;
+	}
+
+	.narrow-hide {
+		display: none;
+	}
+}
+
+@media only screen and (max-width:440px) {
+
+	nav {
+		margin-top: 20px;
+		float: left;
+	}
+
+	nav ul li {
+		display: block;
+		width: 145px
+	}
+
+	nav ul li ul {
+		left: 115px;
+	}
+
+
+	nav ul li ul li {
+		width: 120px;
+	}
+
+	main form#inlined {
+		max-width: 320px;
+	}
+
+	main form#inlined label {
+		width: 120px;
+	}
+
+	form input, form textarea {
+		width: 140px;
+	}
+
+	main form#inlined #button-container {
+		width: 280px;
+	}
+
+	main form#addtobasketform {
+		position: relative;
+	}
+
+	main p.description {
+		margin-top: 0;
+	}
+
+	main section.content-child {
+		padding: 0 10px 24px 10px !important;
+		width: 100% !important;
+	}
+}
+
+@media only screen and (max-width:340px) {
+
+	main section.content-child footer {
+
+		padding-bottom: 20px;
+	}
+
+	main section.content-child footer span {
+		float: none;
+		text-align: left;
+		width: 100%;
+		display: block;
+	}
+}
